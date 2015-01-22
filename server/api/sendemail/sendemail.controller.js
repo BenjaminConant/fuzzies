@@ -39,7 +39,7 @@ exports.sendEmail = function(req, res) {
   
 
     var message = {
-      "html": "<h1>One of your friends as sent you a Fuzzy!!!!</h1><div style='background-color:pink; text-align:left; font-family:cursive; width:75%; margin: 0 auto; white-space:pre-wrap; box-shadow: 10px 10px 10px #888888; font-size: 5em; padding-left: 0.5em; padding-right: 0.5em;'>"+userMessage+"</div><p>Did you like your fuzzy? If you did, <a href='https://fuzzies.herokuapp.com/'>send a Fuzzy to someone who brightens up your day!</a></p>",
+      "html": "<div><div style='padding-left: 0.5em; font-family:Arial, Helvetica, sans-serif; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:75%; background-color:black;'>One of your friends as sent you a Fuzzy!!!!</div><div style='background-color:pink; padding-top: 1em; padding-bottom: 1em; text-align:left; font-family:cursive; width:75%; margin: 0 auto; white-space:pre-wrap; font-size: 4em; padding-left: 0.5em; padding-right: 0.5em;'>"+userMessage+"</div><div style='padding-left: 0.5em; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:75%; background-color:black; font-family:Arial, Helvetica, sans-serif;'>Did you like your Fuzzy? <a href='https://fuzzies.herokuapp.com/'>Send one by reply!</a></div></div>",
       "subject": "You got a Fuzzy!!!",
       "from_email": "yourfuzzyfriend@fuzzies.io",
       "from_name": "Dr. FuzzyMcMailer",
