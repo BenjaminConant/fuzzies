@@ -39,8 +39,8 @@ exports.sendEmail = function(req, res) {
   
 
     var message = {
-      "html": "<h1>This is the best email ever!</h1><p>One of your friends as sent you a Fuzzy!!!!</p> <div style='background-color:pink; text-align:left; font-family:cursive; width:75%; margin: 0 auto; white-space:pre-wrap; box-shadow: 10px 10px 10px #888888; font-size: 5em; padding-left: 0.5em; padding-right: 0.5em;'>"+userMessage+"</div><p>Did you like your fuzzy? If you did, send one to someone who brightens up your day!</p>",
-      "subject": "First Fuzzy email!",
+      "html": "<h1>One of your friends as sent you a Fuzzy!!!!</h1><div style='background-color:pink; text-align:left; font-family:cursive; width:75%; margin: 0 auto; white-space:pre-wrap; box-shadow: 10px 10px 10px #888888; font-size: 5em; padding-left: 0.5em; padding-right: 0.5em;'>"+userMessage+"</div><p>Did you like your fuzzy? If you did, <a href='https://fuzzies.herokuapp.com/'>send a Fuzzy to someone who brightens up your day!</a></p>",
+      "subject": "You got a Fuzzy!!!",
       "from_email": "yourfuzzyfriend@fuzzies.io",
       "from_name": "Dr. FuzzyMcMailer",
       "to": [{
