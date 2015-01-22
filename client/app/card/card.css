@@ -1,0 +1,17 @@
+#card-directive {
+	width: 13em;
+    min-height: 2em;
+    background-color: pink;
+    box-shadow: 10px 10px 10px #888888;
+    margin: 0 auto;
+    padding-left: 0.5em;
+	padding-right: 0.5em;
+	font-family: 'Indie Flower', cursive;
+	font-size: 3em;
+	border: none;
+	display: block;
+	margin: 0 auto;
+	resize: none;
+	overflow: auto;
+
+}
