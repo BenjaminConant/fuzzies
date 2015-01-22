@@ -9,7 +9,7 @@
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem; 
 	box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.26);
-	touch-action: pan-y;
+	text-transform: lowercase;
 }
 
 .send-fuzzy-button {
