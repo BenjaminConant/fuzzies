@@ -4,11 +4,12 @@
 	min-height: 577px;
 	margin: 0 auto;
 	overflow: visible;
-	-webkit-transform: translate(-50px);
+	-webkit-transform: translate(-50px, 70px);
+	margin-bottom: -5em;  /*this moves the whole page down*/
 }
 
 #card-text-area {
-	-webkit-transform: translate(-455px, -280px);
+	-webkit-transform: translate(-455px, -360px);
 	box-shadow: 10px 10px 10px #888888;
 	border: none;
 	font-size: 2em;
@@ -37,7 +38,7 @@
 }
 
 .spinner {
-	-webkit-transform: translate(0px, -285px);
+	-webkit-transform: translate(10px, -217px);
 	margin-bottom: -3em;
 }
 
@@ -53,15 +54,28 @@
 
 .background-editor-container {
 	outline: none;
+	height: 15em;
 	width: 2em;
-	height: 20em;
 	display: inline-block;
-	-webkit-transform: translate(0em, 3em);
-	margin-right: 1em;
+	-webkit-transform: translate(0em, 0em);
 	box-shadow: 5px 5px 5px #888888;
 	background-color: whitesmoke;
 	padding-bottom: 0.5em;
 	overflow: auto;
+}
+
+.font-size-editor-container {
+	width: 2em;
+	height: auto;
+	-webkit-transform: translate(0em, -0.5em);
+	box-shadow: 5px 5px 5px #888888;
+	background-color: whitesmoke;
+	overflow: auto;
+	padding-bottom: 0.5em;
+}
+
+.font-size-editor-container::-webkit-scrollbar {
+    width: 0px;
 }
 
 .background-editor-container::-webkit-scrollbar {
@@ -74,6 +88,18 @@
 	width: 80%;
 	margin: 0 auto;
 	margin-top: 0.5em;
+	font-weight: bolder;
+}
+
+.font-pick-button {
+	height: 19px;
+	line-height: 19px;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 5px;
+	text-align: center;
+	border: 1px solid balck;
+	
 }
 
 .higlighted {

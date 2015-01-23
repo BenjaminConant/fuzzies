@@ -8,6 +8,7 @@ angular.module('fuzziesApp')
     	message: "Hi Adam!\n\nYou are the absolute best. Thanks so much for helping me\ntoday!\n\n Love,\n\nGrace",
     	email: "", 
       backgroundColor: "",
+      fontSize: "",
     };
     
   $scope.colors = [
@@ -27,6 +28,23 @@ angular.module('fuzziesApp')
    {color:"#FFD180", active:false},
    {color:"#FF6E40", active:false}
    ]; /// taken from top of botom div on google design spec
+
+   $scope.fonts = [
+    {name: 1, displaySize: "10px", size:"2em", active: true},
+    {name: 2, displaySize: "10px", size:"3em", active: true},
+    {name: 3, displaySize: "15px", size:"4em", active: true},
+   ];
+
+   $scope.setActiveFontSize = function (font) {
+    $scope.fonts.forEach(function(fontObject){
+        fontObject.active = false;
+    })
+    font.active = true;
+    $scope.card.fontSize = font.size;
+   }
+   $scope.setActiveFontSize($scope.fonts[0]);
+
+   
 
    
    $scope.sendFuzzy = function() {

@@ -4,7 +4,7 @@ var _ = require('lodash');
 var Sendemail = require('./sendemail.model');
 var Fuzzy = require('./fuzzy.model')
 var mandrill = require('mandrill-api/mandrill');
-var mandrill_client = new mandrill.Mandrill('oI4ORuYUtNS5MFNOEcJBcQ');
+var mandrill_client = new mandrill.Mandrill('WlzlcZRhJG-67rnW3nWf0Q');
 
 // Get list of sendemails
 exports.index = function(req, res) {
