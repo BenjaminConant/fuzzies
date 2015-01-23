@@ -38,17 +38,18 @@
 }
 
 .spinner {
-	-webkit-transform: translate(150px, -360px);
-	margin-bottom: -8em;
+	-webkit-transform: translate(0px, -285px);
+	margin-bottom: -3em;
 }
 
 .spinner-image {
-	height: 4em;
-	width: 4em;
+	height: 3em;
+	width: 3em;
 }
 
-.spinner-text {
-
+.spinner-message {
+	font-size: 1.5em;
+	font-weight: bold;
 }
 
 .background-editor-container {
