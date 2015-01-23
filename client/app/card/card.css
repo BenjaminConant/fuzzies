@@ -8,7 +8,7 @@
 }
 
 #card-text-area {
-	-webkit-transform: translate(50px, -260px);
+	-webkit-transform: translate(-455px, -280px);
 	box-shadow: 10px 10px 10px #888888;
 	border: none;
 	font-size: 2em;
@@ -17,6 +17,7 @@
 	padding-left: 0.5em;
 	padding-right: 0.5em;
 	padding-top: 1em;
+	z-index: -10;
 }
 
 #card-text-area::-webkit-scrollbar {
