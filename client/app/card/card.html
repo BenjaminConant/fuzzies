@@ -3,7 +3,7 @@
 	<div class="background-editor-container">
 		<div ng-repeat="color in colors" ng-click="setActiveColor(color)" ng-class="{higlighted: color.active}" class="color-pick-button" style="background-color:{{color.color}}"></div>
 	</div>
-	<textarea autofocus="autofocus" elastic  id="card-directive" style="background-color:{{activeColor}}" ng-value="card.message" ng-model="card.message"></textarea>
+	<textarea autofocus="autofocus" elastic  id="card-directive" style="background-color:{{card.backgroundColor}}" ng-value="card.message" ng-model="card.message"></textarea>
 </div>
 <div>
 

@@ -36,10 +36,10 @@ exports.sendEmail = function(req, res) {
 
     var userMessage = req.body.message;
     var sendEmail = req.body.email;
+    var backgroundColor = req.body.backgroundColor;
   
-
     var message = {
-      "html": "<div><div style='padding-left: 0.5em; font-family:Arial, Helvetica, sans-serif; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:75%; background-color:black;'>One of your friends as sent you a Fuzzy!!!!</div><div style='background-color:pink; padding-top: 1em; padding-bottom: 1em; text-align:left; font-family:cursive; width:75%; margin: 0 auto; white-space:pre-wrap; font-size: 4em; padding-left: 0.5em; padding-right: 0.5em;'>"+userMessage+"</div><div style='padding-left: 0.5em; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:75%; background-color:black; font-family:Arial, Helvetica, sans-serif;'>Did you like your Fuzzy? <a href='https://fuzzies.herokuapp.com/'>Send one by reply!</a></div></div>",
+      "html": "<div><div style='padding-left: 0.5em; font-family:Arial, Helvetica, sans-serif; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:75%; background-color:black;'>One of your friends as sent you a Fuzzy!!!!</div><div style='background-color:"+backgroundColor+"; padding-top: 1em; padding-bottom: 1em; text-align:left; font-family:cursive; width:75%; margin: 0 auto; white-space:pre-wrap; font-size: 4em; padding-left: 0.5em; padding-right: 0.5em;'>"+userMessage+"</div><div style='padding-left: 0.5em; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:75%; background-color:black; font-family:Arial, Helvetica, sans-serif;'>Did you like your Fuzzy? <a href='https://fuzzies.herokuapp.com/'>Send one by reply!</a></div></div>",
       "subject": "You got a Fuzzy!!!",
       "from_email": "yourfuzzyfriend@fuzzies.io",
       "from_name": "Dr. FuzzyMcMailer",
@@ -60,10 +60,9 @@ exports.sendEmail = function(req, res) {
     var async = false;
     var ip_pool = "Main Pool";
     mandrill_client.messages.send({"message": message, "async": async, "ip_pool": ip_pool}, function(result) {
-        console.log(message);
         console.log(result);
         Fuzzy.create(req.body, function(err, fuzzy) {
-         if(err) { return handleError(res, err); }
+         if(err) { console.log("hello from database err"); return handleError(res, err); }
            res.json(201, {email: fuzzy.email, sent: true});
         });
     }, function(e) {

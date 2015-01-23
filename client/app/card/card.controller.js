@@ -6,27 +6,10 @@ angular.module('fuzziesApp')
     $scope.showSpinner = false;
     $scope.card = {
     	message: "Hi Adam!\n\nYou are the absolute best. Thanks so much for helping me today!\n\n Love,\n\nGrace",
-    	email: ""
+    	email: "", 
+      backgroundColor: "",
     };
-    $scope.sendFuzzy = function() {
-    	if ($scope.card.email === undefined) {
-            alert("please enter a valid email");
-        } else {
-            var card = $scope.card;
-            $scope.card = {
-                message: "\n\n\n\n\n\n\n\n\n\n",
-                email: ""
-            };
-            $scope.showSpinner = true;
-            sendemail.send(card).success(function(responceData) {
-                $scope.showSpinner = false;
-                    $scope.card = {
-                         message: "Success!\nYour fuzzy has flown off to "+ responceData.email + "'s inbox!\n\nSend another Fuzzy :)\n\nYou know you want to!\n\nIt only takes a second ...\nand it will brighten up someones day!"
-                     }
-                    $('#card-directive').css('height', "484px"); // to-do put this into directive and dont use jquery or hard code it.
-            });
-        }
-    } 
+    
   $scope.colors = [
    {color:"pink", active: true},
    {color:"#FF80AB", active:false}, 
@@ -45,14 +28,33 @@ angular.module('fuzziesApp')
    {color:"#FFD180", active:false},
    {color:"#FF6E40", active:false}
    ]; /// taken from top of botom div on google design spec
-   $scope.activeColor = $scope.colors[0].color;
+   
+   $scope.sendFuzzy = function() {
+        if ($scope.card.email === undefined) {
+            alert("please enter a valid email");
+        } else {
+            var card = $scope.card;   
+            $scope.showSpinner = true;
+            sendemail.send(card).success(function(responceData) {
+                $scope.showSpinner = false;
+                    $scope.card.message = "Success!\nYour fuzzy has flown off to "+ responceData.email + "'s inbox!\n\nSend another Fuzzy :)\n\nYou know you want to!\n\nIt only takes a second ...\nand it will brighten up someones day!";
+                    $('#card-directive').css('height', "484px"); // to-do put this into directive and dont use jquery or hard code it.
+            });
+        }
+    } 
+
+
+
+
+   
    $scope.setActiveColor = function (color) { 
     $scope.colors.forEach(function(colorObject){
         colorObject.active = false;
     })
     color.active = true;
-    $scope.activeColor = color.color;
+    $scope.card.backgroundColor = color.color;
    }
+   $scope.setActiveColor($scope.colors[0]);
 
 
 
