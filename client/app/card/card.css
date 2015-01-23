@@ -37,7 +37,7 @@
 }
 
 .spinner {
-	-webkit-transform: translate(0px, -16em);
+	-webkit-transform: translate(150px, -360px);
 	margin-bottom: -8em;
 }
 

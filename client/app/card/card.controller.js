@@ -37,8 +37,7 @@ angular.module('fuzziesApp')
             $scope.showSpinner = true;
             sendemail.send(card).success(function(responceData) {
                 $scope.showSpinner = false;
-                    $scope.card.message = "Success!\nYour fuzzy has flown off to "+ responceData.email + "'s inbox!\n\nSend another Fuzzy :)\n\nYou know you want to!\n\nIt only takes a second ...\nand it will brighten up someones day!\n";
-                    $('#card-directive').css('height', "484px"); // to-do put this into directive and dont use jquery or hard code it.
+                $scope.card.message = "Success!\nYour Fuzzy has flown off to "+ responceData.email + "'s inbox!\n\nSend another Fuzzy :)\n\nYou know you want to!\n\nIt only takes a second ... and it will brighten up someones day!\n";
             });
         }
     } 
