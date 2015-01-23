@@ -23,11 +23,11 @@ angular.module('fuzziesApp')
    {color:"#B9F6CA", active:false},
    {color:"#CCFF90", active:false},
    {color:"#F4FF81", active:false},
-   {color:"#FFFF8D", active:false},
    {color:"#FFE57F", active:false},
    {color:"#FFD180", active:false},
    {color:"#FF6E40", active:false}
    ]; /// taken from top of botom div on google design spec
+
    
    $scope.sendFuzzy = function() {
         if ($scope.card.email === undefined) {
