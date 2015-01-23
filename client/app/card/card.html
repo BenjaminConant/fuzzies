@@ -1,6 +1,8 @@
-<textarea autofocus="autofocus" elastic  id="card-directive" ng-value="card.message" ng-model="card.message"></textarea>
-
+<div class="background-editor-container">
+<div ng-repeat="color in colors" ng-click="setActiveColor(color)" ng-class="{higlighted: color.active}" class="color-pick-button" style="background-color:{{color.color}}"></div>
+</div>
+<textarea autofocus="autofocus" elastic  id="card-directive" style="background-color:{{activeColor}}" ng-value="card.message" ng-model="card.message"></textarea>
 <div ng-show="showSpinner" class="text-center spinner">
 <img class="spinner-image" alt="loading" src="http://i.stack.imgur.com/MnyxU.gif"/>
-<h3 class="spinner-message"> Sending your fuzzy </h3>
+<h3 class="spinner-message"> Sending your Fuzzy </h3>
 </div>

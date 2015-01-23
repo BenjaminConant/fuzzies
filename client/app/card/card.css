@@ -1,7 +1,6 @@
 #card-directive {
 	width: 13em;
-    min-height: 2em;
-    background-color: pink;
+	
     box-shadow: 10px 10px 10px #888888;
     margin: 0 auto;
     padding-left: 0.5em;
@@ -13,6 +12,7 @@
 	margin: 0 auto;
 	resize: none;
 	overflow: auto;
+
 }
 
 .spinner {
@@ -27,4 +27,32 @@
 
 .spinner-text {
 
+}
+
+.background-editor-container {
+	outline: none;
+	width: 2em;
+	height: 20em;
+	float: left;
+	-webkit-transform: translate(25em, 3em);
+	box-shadow: 5px 5px 5px #888888;
+	background-color: whitesmoke;
+	padding-bottom: 0.5em;
+	overflow: auto;
+}
+
+.background-editor-container::-webkit-scrollbar {
+    width: 0px;
+}
+
+.color-pick-button {
+	outline: none;
+	height: 1.3em;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 0.5em;
+}
+
+.higlighted {
+	box-shadow: 2px 2px 2px #888888;
 }

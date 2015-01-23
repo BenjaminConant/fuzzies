@@ -1,3 +1,7 @@
+.card-form-container {
+    min-height: 364px;
+}
+
 .thing-form {
     margin: 20px 0;
 }
