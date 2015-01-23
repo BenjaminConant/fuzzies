@@ -17,7 +17,6 @@
 	padding-left: 0.5em;
 	padding-right: 0.5em;
 	padding-top: 1em;
-	z-index: -10;
 }
 
 #card-text-area::-webkit-scrollbar {

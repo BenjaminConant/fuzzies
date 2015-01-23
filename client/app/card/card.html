@@ -4,7 +4,7 @@
 			<div class="background-editor-container">
 				<div ng-repeat="color in colors" ng-click="setActiveColor(color)" ng-class="{higlighted: color.active}" class="color-pick-button" style="background-color:{{color.color}}"></div>
 			</div>
-			<div style="position: relative; left: 500px; z-index: -100" >
+			<div style="position: relative; left: 500px;" >
 		      <pre id="card-text-area-pre" style="white-space: pre-wrap; word-wrap: break-word;" ng-bind="card.message+'\n'"></pre>
 		      <textarea id="card-text-area" autofocus="autofocus" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color:{{card.backgroundColor}};" ng-model="card.message" ng-trim="false"></textarea>
 		    </div>
