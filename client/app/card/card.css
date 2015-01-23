@@ -1,9 +1,38 @@
 .card-and-edit-contianer {
 	display: block;
 	width: 30em;
-	height: auto;
+	min-height: 577px;
 	margin: 0 auto;
 	overflow: visible;
+	-webkit-transform: translate(-50px);
+}
+
+#card-text-area {
+	-webkit-transform: translate(50px, -260px);
+	box-shadow: 10px 10px 10px #888888;
+	border: none;
+	font-size: 2em;
+	font-family: 'Indie Flower', cursive;
+	resize: none;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+#card-text-area::-webkit-scrollbar {
+    width: 0px;
+}
+
+#card-text-area-pre {
+	-webkit-transform: translate(200em, -17.2em);
+	background-color: red;
+	border: 1px solid black;
+	font-size: 2em;
+	font-family: 'Indie Flower', cursive;
+	opacity: 0;
+    filter: alpha(opacity=0); /* For IE8 and earlier */
+    padding-left: 0.5em;
+	padding-right: 0.5em;
+	padding-bottom: 1.5em;
 }
 
 #card-directive {
