@@ -5,7 +5,7 @@ angular.module('fuzziesApp')
     var self = this;
     $scope.showSpinner = false;
     $scope.card = {
-    	message: "Hi Adam!\n\nYou are the absolute best. Thanks so much for helping me today!\n\n Love,\n\nGrace",
+    	message: "Hi Adam!\n\nYou are the absolute best. Thanks so much for helping me\ntoday!\n\n Love,\n\nGrace",
     	email: "", 
       backgroundColor: "",
     };
@@ -37,7 +37,7 @@ angular.module('fuzziesApp')
             $scope.showSpinner = true;
             sendemail.send(card).success(function(responceData) {
                 $scope.showSpinner = false;
-                    $scope.card.message = "Success!\nYour fuzzy has flown off to "+ responceData.email + "'s inbox!\n\nSend another Fuzzy :)\n\nYou know you want to!\n\nIt only takes a second ...\nand it will brighten up someones day!";
+                    $scope.card.message = "Success!\nYour fuzzy has flown off to "+ responceData.email + "'s inbox!\n\nSend another Fuzzy :)\n\nYou know you want to!\n\nIt only takes a second ...\nand it will brighten up someones day!\n";
                     $('#card-directive').css('height', "484px"); // to-do put this into directive and dont use jquery or hard code it.
             });
         }

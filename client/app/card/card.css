@@ -16,6 +16,7 @@
 	resize: none;
 	padding-left: 0.5em;
 	padding-right: 0.5em;
+	padding-top: 1em;
 }
 
 #card-text-area::-webkit-scrollbar {
@@ -33,19 +34,6 @@
     padding-left: 0.5em;
 	padding-right: 0.5em;
 	padding-bottom: 1.5em;
-}
-
-#card-directive {
-	width: 13em;
-    box-shadow: 10px 10px 10px #888888;
-    padding-left: 0.5em;
-	padding-right: 0.5em;
-	font-family: 'Indie Flower', cursive;
-	font-size: 2em;
-	border: none;
-	display: inline-block;
-	resize: none;
-	overflow: auto;
 }
 
 .spinner {
