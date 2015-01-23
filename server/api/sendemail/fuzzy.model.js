@@ -6,7 +6,8 @@ var mongoose = require('mongoose'),
 var FuzzySchema = new Schema({
   message: String,
   email: String, 
-  backgroundColor: String
+  backgroundColor: String,
+  fontSize: String
 });
 
 module.exports = mongoose.model('Fuzzy', FuzzySchema);
