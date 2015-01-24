@@ -6,7 +6,7 @@ angular.module('fuzziesApp')
     var self = this;
     $scope.showSpinner = false;
     $scope.card = {
-    	message: "Hey There!\n\nWelcome to Fuzzies! Send one to someone special! ... It's sure to brighten up thier day :) \n\n Love,\n\nThe Fuzz Doctor",
+    	message: "Hey There!\n\nWelcome to Fuzzies! Send one to someone special! ... It's sure to brighten up their day :) \n\n Love,\n\nThe Fuzz Doctor",
     	senderEmail: "",
       email: "", 
       backgroundColor: "",
