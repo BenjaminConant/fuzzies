@@ -11,6 +11,10 @@ angular.module('fuzziesApp', [
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
+      .when('/:sendEmail/:senderEmail', {
+        templateUrl: 'app/main/main.html',
+        controller: 'MainCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -2,9 +2,7 @@
 	width: 20em;
 	font-size: 2.5em;
 	font-family: 'Nunito', sans-serif;
-	border:1px solid #888888;
-	border-top-left-radius: 3px !important;
-	border-bottom-left-radius: 3px !important;	
+	border:none;
 	padding-left:1rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem; 
@@ -12,11 +10,30 @@
 	text-transform: lowercase;
 }
 
+input:focus::-webkit-input-placeholder 
+{
+    color: transparent;
+}
+
+
 .send-fuzzy-button {
 	font-size: 2.5em;
 	font-family: 'Nunito', sans-serif;
 	text-transform: none !important;
-	margin-left: -0.15em !important;
-	border-top-left-radius: 0 !important;
-	border-bottom-left-radius: 0 !important;
+	border-radius: 0 !important;
+	width: 20em;
+	color: black !important;
+	background-color: pink !important;
+}
+
+#from-to-wrapper {
+	margin-top: -3em;
+}
+
+#from-label {
+	-webkit-transform: translate(-330px, -80px);
+}
+
+#to-label {
+	-webkit-transform: translate(-337px, -40px);
 }

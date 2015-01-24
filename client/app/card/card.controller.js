@@ -1,15 +1,38 @@
 'use strict';
 
 angular.module('fuzziesApp')
-  .controller('CardCtrl', function ($scope, sendemail, $rootScope) {
+  .controller('CardCtrl', function ($scope, sendemail, $rootScope, $routeParams) {
+    
     var self = this;
     $scope.showSpinner = false;
     $scope.card = {
-    	message: "Hi Adam!\n\nYou are the absolute best. Thanks so much for helping me\ntoday!\n\n Love,\n\nGrace",
-    	email: "", 
+    	message: "Hey There!\n\nWelcome to Fuzzies! Send one to someone special! ... It's sure to brighten up thier day :) \n\n Love,\n\nThe Fuzz Doctor",
+    	senderEmail: "",
+      email: "", 
       backgroundColor: "",
       fontSize: "",
     };
+    
+    if ($routeParams.senderEmail){
+      // we have params
+      $scope.showFromTo = true;
+
+      if ($routeParams.senderEmail !== "yourfuzzyfriend@fuzzies.io") {
+        // we have a sender email and a reciver email
+        if ($routeParams.senderEmail === $routeParams.sendEmail) {
+          $scope.card.message = "Hey there "+$routeParams.senderEmail+",\n\nIt looks like you just sent yourself a fuzzy ... Try sending one to someone else!!! \n\n It just takes a second and will brighten up thier day :)" ,
+          $scope.card.senderEmail = $routeParams.sendEmail;
+        } else {
+        $scope.card.message = "Hey there "+ $routeParams.senderEmail + ",\n\n" + $routeParams.sendEmail + " just sent you a Fuzzy! ... Cool right?!?! \n\nSend a Fuzzy back by changing this text and hitting the Send Fuzzy button!",
+        $scope.card.email = $routeParams.senderEmail;
+        $scope.card.senderEmail = $routeParams.sendEmail;
+      }
+      } else {
+        // we only have a sender email
+        $scope.card.senderEmail = $routeParams.sendEmail;
+  
+      }
+    } 
     
   $scope.colors = [
    {color:"pink", active: true},
@@ -55,6 +78,7 @@ angular.module('fuzziesApp')
             $scope.showSpinner = true;
             sendemail.send(card).success(function(responceData) {
                 $scope.showSpinner = false;
+                $scope.setActiveFontSize($scope.fonts[0]);
                 $scope.card.message = "Success!\nYour Fuzzy has flown off to "+ responceData.email + "'s inbox!\n\nSend another Fuzzy :)\n\nYou know you want to!\n\nIt only takes a second ... and it will brighten up someones day!\n";
             });
         }

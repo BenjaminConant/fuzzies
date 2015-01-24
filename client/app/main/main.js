@@ -6,5 +6,5 @@ angular.module('fuzziesApp')
       .when('/', {
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
-      });
+      })
   });

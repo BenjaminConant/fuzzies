@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 
 var FuzzySchema = new Schema({
   message: String,
+  senderEmail: String,
   email: String, 
   backgroundColor: String,
   fontSize: String
