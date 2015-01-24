@@ -31,9 +31,9 @@ input:focus::-webkit-input-placeholder
 }
 
 #from-label {
-	-webkit-transform: translate(-330px, -80px);
+	-webkit-transform: translate(-326px, -80px);
 }
 
 #to-label {
-	-webkit-transform: translate(-337px, -40px);
+	-webkit-transform: translate(-334px, -40px);
 }
