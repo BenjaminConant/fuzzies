@@ -29,7 +29,7 @@ angular.module('fuzziesApp')
       }
       } else {
         // we only have a sender email
-        $scope.card.message = "Hey there "+ $routeParams.sendEmail.split('@')[0] +",\n\nIt looks like you just got a Fuzzy! Try sending one to someone else!!! \n\n It just takes a second and will brighten up thier day :)" ,
+        $scope.card.message = "Hey there "+ $routeParams.sendEmail.split('@')[0] +",\n\nIt looks like you just got a Fuzzy! Try sending one to someone else!!! \n\n It just takes a second and will brighten up their day :)" ,
         $scope.card.senderEmail = $routeParams.sendEmail;
       }
     } 
