@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fuzziesApp')
-  .controller('CardCtrl', function ($scope, sendemail, $rootScope, $routeParams, $location, $anchorScroll) {
+  .controller('CardCtrl', function ($scope, sendemail, $rootScope, $routeParams, $location, $anchorScroll, $http) {
     
     var self = this;
     $scope.showSpinner = false;
@@ -97,6 +97,15 @@ angular.module('fuzziesApp')
     $scope.card.backgroundColor = color.color;
    }
    $scope.setActiveColor($scope.colors[0]);
+
+   $scope.imageTest = function () {
+    var card = $scope.card;
+    console.log('hello');
+    $http.post('api/sendemails/imagetest/', card).success(function(data){
+      console.log(data.secure_url);
+      console.log(data.url);
+    })
+   }
 
 
 
