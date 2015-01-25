@@ -37,49 +37,76 @@ exports.show = function(req, res) {
 //   });
 // };
 
-// Creates a new sendemail in the DB.
-exports.sendEmail = function(req, res) {
-  // webshot('google.com', './thing.png', function(errr) {
+// webshot('google.com', './thing.png', function(errr) {
   // if (errr) {
   //   console.log(errr) 
   //   console.log(data + "-------------this is data--------------------");
   // } else {
   //   console.log("an image was generated!!!");
   // }
-
   // screenshot now saved to hello_world.png
+  // webshot("<div><div style='padding-left: 0.5em; font-family:Arial, Helvetica, sans-serif; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:100%; background-color:black;'>One of your friends has sent you a Fuzzy!!!!</div><div style='background-color:"+backgroundColor+"; padding-top: 1em; padding-bottom: 1em; text-align:left; font-family:cursive; width:100%; margin: 0 auto; white-space:pre-wrap; font-size:"+fontSize+"; padding-left: 0.5em; padding-right: 0.5em;'><div style='width:95%;'>"+userMessage+"</div></div><div style='padding-left: 0.5em; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:100%; background-color:black; font-family:Arial, Helvetica, sans-serif;'>Did you like your Fuzzy? <a href='https://fuzzies.herokuapp.com/'>Send one by reply!</a></div></div>", './hello_world_node_html_markup_dynamic.png', {siteType:'html'}, function(err) {
+
+
+// Creates a new sendemail in the DB.
+exports.sendEmail = function(req, res) {
+  
 
     if (req.body.senderEmail === "") {
       var senderEmail = "yourfuzzyfriend@fuzzies.io";
+       var senderEmailName = "yourfuzzyfriend@fuzzies.io";
     } else {
       var senderEmail = req.body.senderEmail;
+      var senderEmailName = senderEmail.split('@')[0];
     }
-
-    console.log(senderEmail);
+   
     var userMessage = req.body.message;
-    var sendEmail = req.body.email;
+    var sendEmailArray = req.body.email.split(', ');
     var backgroundColor = req.body.backgroundColor;
     var fontSize = req.body.fontSize;
-    // webshot("<div><div style='padding-left: 0.5em; font-family:Arial, Helvetica, sans-serif; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:100%; background-color:black;'>One of your friends has sent you a Fuzzy!!!!</div><div style='background-color:"+backgroundColor+"; padding-top: 1em; padding-bottom: 1em; text-align:left; font-family:cursive; width:100%; margin: 0 auto; white-space:pre-wrap; font-size:"+fontSize+"; padding-left: 0.5em; padding-right: 0.5em;'><div style='width:95%;'>"+userMessage+"</div></div><div style='padding-left: 0.5em; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:100%; background-color:black; font-family:Arial, Helvetica, sans-serif;'>Did you like your Fuzzy? <a href='https://fuzzies.herokuapp.com/'>Send one by reply!</a></div></div>", './hello_world_node_html_markup_dynamic.png', {siteType:'html'}, function(err) {
+    
+   
+    var moreThanOneEmail = sendEmailArray.length > 1; 
+    if (moreThanOneEmail) {
+      var emails = "Your Fuzzies have Flown off to the inboxes of ";
+    } else {
+      var emails = "Your Fuzzy has Flown of to ";
+    }
+    sendEmailArray.forEach(function(sendEmail, index, array){
+      if (moreThanOneEmail) {
+        if (index === array.length - 1) {
+          emails += "and " + sendEmail + "!";
+        } else {
+          emails += sendEmail + " ";
+        }
+      } else {
+         emails += sendEmail + "'s' inbox!";
+      }
 
-    var message = {
-      "html": "<div><div style='padding-left: 0.5em; font-family:Arial, Helvetica, sans-serif; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:100%; background-color:black;'>One of your friends sent you a Fuzzy!!!!</div><div style='background-color:"+backgroundColor+"; padding-top: 1em; padding-bottom: 1em; text-align:left; font-family:cursive; width:100%; margin: 0 auto; white-space:pre-wrap; font-size:"+fontSize+"; padding-left: 0.5em; padding-right: 0.5em;'><div style='width:95%;'>"+userMessage+"</div></div><div style='padding-left: 0.5em; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:100%; background-color:black; font-family:Arial, Helvetica, sans-serif;'>Loved your Fuzzy? <a href='http://fuzzies.herokuapp.com/"+sendEmail+"/"+senderEmail+"'"+">Send one by reply!</a></div></div>",
-      "subject": "You got a Fuzzy!!!",
-      "from_email": senderEmail,
-      "from_name": "Dr. FuzzyMcMailer",
-      "to": [{
-        "email": sendEmail,
-        "name": sendEmail
-      }],
-      "important": false,
-      "track_opens": true,
-      "auto_html": false,
-      "preserve_recipients": true,
-      "merge": false,
-      "tags": [
-      "Fuzzy", 
-      "Fuzzies"
-      ]
+      var sendEmailName = sendEmail.split('@')[0];
+      console.log(sendEmail);
+      console.log(sendEmail.split('@'));
+   
+
+
+      var message = {
+        "html": "<div><div style='padding-left: 0.5em; font-family:Arial, Helvetica, sans-serif; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:100%; background-color:black;'>One of your friends sent you a Fuzzy!!!!</div><div style='background-color:"+backgroundColor+"; padding-top: 1em; padding-bottom: 1em; text-align:left; font-family:cursive; width:100%; margin: 0 auto; white-space:pre-wrap; font-size:"+fontSize+"; padding-left: 0.5em; padding-right: 0.5em;'><div style='width:95%;'>"+userMessage+"</div></div><div style='padding-left: 0.5em; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:100%; background-color:black; font-family:Arial, Helvetica, sans-serif;'>Loved your Fuzzy? <a href='http://fuzzies.herokuapp.com/"+sendEmailName+"/"+senderEmailName+"'"+">Send one by reply!</a></div></div>",
+        "subject": "You got a Fuzzy!!!",
+        "from_email": senderEmail,
+        "from_name": "Dr. FuzzyMcMailer",
+        "to": [{
+          "email": sendEmail,
+          "name": sendEmailName
+        }],
+        "important": false,
+        "track_opens": true,
+        "auto_html": false,
+        "preserve_recipients": true,
+        "merge": false,
+        "tags": [
+        "Fuzzy", 
+        "Fuzzies"
+        ]
     };
     var async = false;
     var ip_pool = "Main Pool";
@@ -87,16 +114,35 @@ exports.sendEmail = function(req, res) {
         console.log(result);
         Fuzzy.create(req.body, function(err, fuzzy) {
          if(err) { console.log("hello from database err"); return handleError(res, err); }
-           res.json(201, {email: fuzzy.email, sent: true});
         });
     }, function(e) {
       // Mandrill returns the error as an object with name and message keys
       console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
-      res.json(500, {email: 'A mandrill error occurred: ' + e.name + ' - ' + e.message, sent:false});
       // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
     });
     // });
+    })
+    
+    res.json(200, {'email':emails});
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Updates an existing sendemail in the DB.
 exports.update = function(req, res) {

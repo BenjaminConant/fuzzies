@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fuzziesApp')
-  .controller('CardCtrl', function ($scope, sendemail, $rootScope, $routeParams) {
+  .controller('CardCtrl', function ($scope, sendemail, $rootScope, $routeParams, $location, $anchorScroll) {
     
     var self = this;
     $scope.showSpinner = false;
@@ -78,8 +78,9 @@ angular.module('fuzziesApp')
             $scope.showSpinner = true;
             sendemail.send(card).success(function(responceData) {
                 $scope.showSpinner = false;
+                document.body.scrollTop = 0;
                 $scope.setActiveFontSize($scope.fonts[0]);
-                $scope.card.message = "Success!\nYour Fuzzy has flown off to "+ responceData.email + "'s inbox!\n\nSend another Fuzzy :)\n\nYou know you want to!\n\nIt only takes a second ... and it will brighten up someones day!\n";
+                $scope.card.message = "Success!\n" + responceData.email + "\n\nSend another Fuzzy :)\n\nYou know you want to!\n\nIt only takes a second ... and it will brighten up someones day!\n";
             });
         }
     } 
