@@ -38,3 +38,39 @@ input:focus::-webkit-input-placeholder
 #to-label {
 	-webkit-transform: translate(-334px, -40px);
 }
+
+
+
+@media only screen and (min-width: 0px) and (max-width: 679px) {
+
+.email-input {
+	width: 90%;
+	font-size: 1.5em;
+}
+
+.send-fuzzy-button { 
+	width: 90%;
+}
+
+
+
+}
+
+
+@media only screen and (min-width: 0px) and (max-width: 390px) {
+
+.email-input {
+	width: 90%;
+	font-size: 1.2em;
+}
+
+.send-fuzzy-button { 
+	width: 90%;
+	font-size: 1.5em;
+}
+
+
+
+}
+
+
