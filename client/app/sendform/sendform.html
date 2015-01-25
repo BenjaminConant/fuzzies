@@ -1,11 +1,9 @@
 <div class="text-center">
-	<div>
 		 <input type="email" ng-value="card.senderEmail" ng-model="card.senderEmail" class="email-input" placeholder="youremail@email.com (optional)">
 		 <input type="email" ng-value="card.email" ng-model="card.email" class="email-input" placeholder="theiremail@email.com">
-	</div>
-	<div ng-show="showFromTo" id="from-to-wrapper">
+<!-- 	<div ng-show="showFromTo" id="from-to-wrapper">
 		<div id="from-label">From:</div>
 		<div id="to-label">To:</div>
-	</div>
+	</div> -->
 	<div><md-button style="background-color: {{card.backgroundColor}} !important;" ng-click="sendFuzzy()"class="md-primary md-raised send-fuzzy-button">Send Fuzzy</md-button></div>
 </div>
