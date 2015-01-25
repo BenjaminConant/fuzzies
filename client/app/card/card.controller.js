@@ -20,17 +20,17 @@ angular.module('fuzziesApp')
       if ($routeParams.senderEmail !== "yourfuzzyfriend@fuzzies.io") {
         // we have a sender email and a reciver email
         if ($routeParams.senderEmail === $routeParams.sendEmail) {
-          $scope.card.message = "Hey there "+ $routeParams.sendEmail +",\n\nIt looks like you just sent yourself a fuzzy ... Try sending one to someone else!!! \n\n It just takes a second and will brighten up thier day :)" ,
+          $scope.card.message = "Hey there "+ $routeParams.sendEmail.split('@')[0] +",\n\nIt looks like you just sent yourself a fuzzy ... Try sending one to someone else!!! \n\n It just takes a second and will brighten up thier day :)" ,
           $scope.card.senderEmail = $routeParams.sendEmail;
         } else {
-        $scope.card.message = "Hey there "+ $routeParams.sendEmail + ",\n\n" + $routeParams.senderEmail + " just sent you a Fuzzy! ... Cool right?!?! \n\nSend a Fuzzy back by changing this text and hitting the Send Fuzzy button!",
+        $scope.card.message = "Hey there "+ $routeParams.sendEmail.split('@')[0] + ",\n\n" + $routeParams.senderEmail.split('@')[0] + " just sent you a Fuzzy! ... Cool right?!?! \n\nSend a Fuzzy back by changing this text and hitting the Send Fuzzy button!",
         $scope.card.email = $routeParams.senderEmail;
         $scope.card.senderEmail = $routeParams.sendEmail;
       }
       } else {
         // we only have a sender email
+        $scope.card.message = "Hey there "+ $routeParams.sendEmail.split('@')[0] +",\n\nIt looks like you just got a Fuzzy! Try sending one to someone else!!! \n\n It just takes a second and will brighten up thier day :)" ,
         $scope.card.senderEmail = $routeParams.sendEmail;
-  
       }
     } 
     
