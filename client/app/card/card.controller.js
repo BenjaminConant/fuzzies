@@ -111,6 +111,18 @@ angular.module('fuzziesApp')
           } else if (emailsArray.length > 0 && textsArray.length + emailsArray.length < 50) {
              //////// we have emails and no invalids
              alert("Hooray, emails are flying off to " + emailsArray.join(", "));
+             $scope.card.emails = emailsArray.join(", ");
+             var card = $scope.card;   
+             $scope.showSpinner = true;
+             sendemail.send(card).success(function(responceData) {
+                 console.log(responceData);
+                 $scope.showSpinner = false;
+                 document.body.scrollTop = 0;
+                 $scope.setActiveFontSize($scope.fonts[0]);
+                 $scope.card.message = "Success!\n" + responceData.email + "\n\nSend another Fuzzy :)\n\nYou know you want to!\n\nIt only takes a second ... and it will brighten up someones day!\n\n P.S - Did you know you can send fuzzies to multiple people? Just enter the emails as a comma seperated list ... like this \n\n tom@tom.com, ben@ben.com, drfuzzy@fuzz.com, and so on ...\n\n give it a shot!";
+             }).error(function(err){
+              console.log(err);
+             });
           } 
 
           // if (validateEmail($scope.card.email)) {
