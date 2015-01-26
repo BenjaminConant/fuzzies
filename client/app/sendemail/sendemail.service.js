@@ -11,6 +11,9 @@ angular.module('fuzziesApp')
     return {
       send: function (card) {
         return $http.post('api/sendemails', card);
+      }, 
+      sendTexts: function(card) {
+        return $http.post('api/sendemails/sendtexts', card);
       }
     };
   });
