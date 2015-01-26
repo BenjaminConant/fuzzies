@@ -153,6 +153,7 @@ exports.sendTexts = function(req, res) {
         console.log(result.url)
         console.log(result.secure_url);
         numbersToText.forEach(function(number) {
+          number = number.replace(/[^\d]/g,'');
           client.messages.create({ 
               to: number, 
               from: "+19178096527",  
