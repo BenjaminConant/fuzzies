@@ -159,7 +159,7 @@ exports.sendTexts = function(req, res) {
               body: senderEmail + " sent you a Fuzzy!!! To reply click this link " + 'http://fuzzies.herokuapp.com/'+number+'/'+senderEmail, 
               mediaUrl: result.secure_url,  
             }, function(err, message) { 
-              console.log(message.sid); 
+              if (err) {console.log("well this one did not work" + number)}; 
           });
         })
       return res.json(200, {email: "Your text(s) have flown off to " + numbersToText.join(', ')});
