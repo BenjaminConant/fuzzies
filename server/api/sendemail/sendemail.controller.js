@@ -6,14 +6,23 @@ var Fuzzy = require('./fuzzy.model')
 var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill('WlzlcZRhJG-67rnW3nWf0Q');
 var webshot = require('webshot');
-
-// var fs = require('fs');
 var cloudinary = require('cloudinary');
 cloudinary.config({ 
   cloud_name: 'fuzzies', 
   api_key: '285285339937268', 
   api_secret: 'qCPv4pm7k80fMB_d6Gx5sbJdBGI' 
 });
+// Twilio Credentials 
+var accountSid = 'AC3b07b1b4eb5ae44c46dd0a06e2c08a4e'; 
+var authToken = '15081e20d617edeac58a3b25e64c18d6'; 
+ 
+//require the Twilio module and create a REST client 
+var client = require('twilio')(accountSid, authToken); 
+ 
+
+
+
+
 
 
 
@@ -144,9 +153,22 @@ exports.imageTest = function(req, res) {
     var htmlForWebShot = "<!doctype html><head><style>.header{font-family:Arial, Helvetica, sans-serif} #text{font-family: cursive, 'Comic Sans MS', sans-serif}</style></head><body style='padding: 0; margin: 0;'><div class='header' style='padding-bottom:0.5em; padding-top:0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:100%; background-color:"+headerBackgroundColor+";'>A friend sent you a Fuzzy!</div><div style='height: 100%; background-color:"+backgroundColor+"; padding-top: 1em; padding-bottom: 1em; text-align:left; width:100%; margin: 0 auto; white-space:pre-wrap; font-size:"+fontSize+"; padding-left: 0.5em; padding-right: 0.5em;'><div id='text' style='width:95%; font-style: italic;'>"+userMessage+"</div></div> <div style='font-family:Arial, Helvetica, sans-serif; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:100%; background-color:"+headerBackgroundColor+";'>Click your Fuzzy to reply!</div></body></html>";
     webshot(htmlForWebShot, 'hello_world.png', {siteType:'html', shotSize:{height:'all', width: 'all'}}, function(err) {
         cloudinary.uploader.upload('hello_world.png', function(result) {
+
+
+
         console.log(result);
         console.log(result.url)
         console.log(result.secure_url);
+        client.messages.create({ 
+            to: "19175194215", 
+            from: "+19178096527",  
+            body: sendEmailName + " sent you a Fuzzy!!! To reply click this link " + 'http://fuzzies.herokuapp.com/'+sendEmailName+'/'+senderEmailName, 
+            mediaUrl: result.secure_url,  
+          }, function(err, message) { 
+            console.log(message.sid); 
+          });
+
+
         var message = {
                         "html": "<a href='http://fuzzies.herokuapp.com/"+sendEmailName+"/"+senderEmailName+"'"+"><img style='width:100%' src='"+result.secure_url+"'/></a>",
                         // "html":"<div><div style='padding-left: 0.5em; font-family:Arial, Helvetica, sans-serif; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:100%; background-color:black;'>One of your friends sent you a Fuzzy!!!!</div><div style='width: 100%; height: 100%;'><a href='http://fuzzies.herokuapp.com/"+sendEmailName+"/"+senderEmailName+"'"+"><img style='width: 100%; height: 100%;' src='"+result.secure_url+"'/></a></div><div style='padding-left: 0.5em; padding-bottom:0.5em; padding-top:0.5em; padding-right: 0.5em; text-align:center; margin:0 auto; font-size: 4em; color:white; width:100%; background-color:black; font-family:Arial, Helvetica, sans-serif;'>Loved your Fuzzy? <a href='http://fuzzies.herokuapp.com/"+sendEmailName+"/"+senderEmailName+"'"+">Send one by reply!</a></div>",

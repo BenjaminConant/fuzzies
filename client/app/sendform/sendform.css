@@ -3,11 +3,11 @@
 	font-size: 2.5em;
 	font-family: 'Nunito', sans-serif;
 	border: none;
-	padding-left:1rem;
+	padding-left:0.3em;
+	padding-right: 2em;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem; 
 	box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.26);
-	text-transform: lowercase;
 	margin:0;
 }
 

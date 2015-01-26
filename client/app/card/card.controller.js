@@ -69,20 +69,82 @@ angular.module('fuzziesApp')
 
    
 
+
+    function validateEmail(email) { 
+      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
    
    $scope.sendFuzzy = function() {
-        if ($scope.card.email === undefined) {
-            alert("please enter a valid email");
+
+
+
+      if (!validateEmail($scope.card.senderEmail)) {
+        alert("Whoops :( your email was not valid. Please enter a valid email in the top input box!");
+      } else {
+        var emailsArray = [];
+        var textsArray = [];
+        var invalidsArray = [];
+        var sendToArray = $scope.card.email.split(',');
+        if (sendToArray.length > 0) {
+          sendToArray.forEach(function(sendTo){
+            var sendTo = sendTo.trim();
+            if (validateEmail(sendTo)) {
+              /// we have a valid sender and a valid sendto email --- now we should request our backend to send an email
+              emailsArray.push(sendTo);
+            } else if (sendTo.replace(/[^\d]/g,'').length === 10) {
+              ////// user has entered a valid phone number and a valid sender email .... send to our texting rout
+              textsArray.push(sendTo);
+            } else {
+              //// this send to was invalid
+              invalidsArray.push(sendTo);
+            }
+          });
+
+          if (invalidsArray.length > 0) {
+            //////// we have at least one invalid input log it out 
+            debugger;
+            alert("Whoops ... it looks like the following emails or numbers were invalid :(. Please check them and try again! " + invalidsArray.join(', '));
+          } else if (textsArray.length > 0 && textsArray.length + emailsArray.length < 50) {
+            ///////// we have texts and no invalids
+            alert("Hooray, texts are flying off to " + textsArray.join(", "));
+          } else if (emailsArray.length > 0 && textsArray.length + emailsArray.length < 50) {
+             //////// we have emails and no invalids
+             alert("Hooray, emails are flying off to " + emailsArray.join(", "));
+          } 
+
+          // if (validateEmail($scope.card.email)) {
+          //   alert("Horray :) your email is valid and the send to email is valid");
+          //   /// we have a valid sender and a valid sendto email --- now we should request our backend to send an email
+          // } else if ($scope.card.email.replace(/[^\d]/g,'').length === 10) {
+          //  alert("Horray :) your email is valid and the send to phone number is also valid");
+          //   ////// user has entered a valid phone number and a valid sender email .... send to our texting rout
+          // } else {
+          //   alert("Whoops :( Either the email or phone number you are trying to send to is not valid. Please check and try again!");
+          // }
         } else {
-            var card = $scope.card;   
-            $scope.showSpinner = true;
-            sendemail.send(card).success(function(responceData) {
-                $scope.showSpinner = false;
-                document.body.scrollTop = 0;
-                $scope.setActiveFontSize($scope.fonts[0]);
-                $scope.card.message = "Success!\n" + responceData.email + "\n\nSend another Fuzzy :)\n\nYou know you want to!\n\nIt only takes a second ... and it will brighten up someones day!\n\n P.S - Did you know you can send fuzzies to multiple people? Just enter the emails as a comma seperated list ... like this \n\n tom@tom.com, ben@ben.com, drfuzzy@fuzz.com, and so on ...\n\n give it a shot!";
-            });
-        }
+
+          alert("Whoops :( looks like you did not send your Fuzzy to anybody :(. Check and try again!");
+        }    
+      }
+
+
+      console.log($scope.card);
+      console.log($scope.card.email);
+      console.log(validateEmail($scope.card.email));
+      console.log($scope.card.senderEmail);
+      console.log(validateEmail($scope.card.senderEmail));
+
+
+      // var card = $scope.card;   
+      // $scope.showSpinner = true;
+      // sendemail.send(card).success(function(responceData) {
+      //     $scope.showSpinner = false;
+      //     document.body.scrollTop = 0;
+      //     $scope.setActiveFontSize($scope.fonts[0]);
+      //     $scope.card.message = "Success!\n" + responceData.email + "\n\nSend another Fuzzy :)\n\nYou know you want to!\n\nIt only takes a second ... and it will brighten up someones day!\n\n P.S - Did you know you can send fuzzies to multiple people? Just enter the emails as a comma seperated list ... like this \n\n tom@tom.com, ben@ben.com, drfuzzy@fuzz.com, and so on ...\n\n give it a shot!";
+      // });
+        
     } 
 
 
