@@ -60,9 +60,9 @@ exports.sendEmails = function(req, res) {
 
          var moreThanOneEmail = emailsArray.length > 1; 
          if (moreThanOneEmail) {
-           var emails = "Your Fuzzies have Flown off to the inboxes of ";
+           var emails = "Your Fuzzies have flown off to the inboxes of ";
           } else {
-            var emails = "Your Fuzzy has Flown of to ";
+            var emails = "Your Fuzzy has flown off to ";
           }
 
           emailsArray.forEach(function(sendEmail, index, array){
@@ -162,7 +162,7 @@ exports.sendTexts = function(req, res) {
               console.log(message.sid); 
           });
         })
-      return res.json(200, {email: "Your texts have flown of to " + numbersToText.join(', ')});
+      return res.json(200, {email: "Your text(s) have flown off to " + numbersToText.join(', ')});
       })
     })
   }
