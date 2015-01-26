@@ -125,9 +125,16 @@ exports.sendEmails = function(req, res) {
 // Send One or more Fuzzies via text
 exports.sendTexts = function(req, res) {
  var senderEmail = req.body.senderEmail;
+
  if (!validateEmail(senderEmail)) {
     return res.json(500, {Message: "you did not enter a vaild sender email."}) 
   } else {
+   if (senderEmail.split('@')[1] === "fuzzytexts.io") {
+    senderEmail = senderEmail.split('@')[0];
+   }
+
+
+
     var numbersToText = req.body.numbers;
     
     var senderEmailName = senderEmail.split('@')[0];

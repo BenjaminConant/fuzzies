@@ -20,16 +20,24 @@ angular.module('fuzziesApp')
       if ($routeParams.senderEmail !== "yourfuzzyfriend@fuzzies.io") {
         // we have a sender email and a reciver email
         if ($routeParams.senderEmail === $routeParams.sendEmail) {
-          $scope.card.message = "Hey there "+ $routeParams.sendEmail.split('@')[0] +",\n\nIt looks like you just sent yourself a fuzzy ... Try sending one to someone else!!! \n\n It just takes a second and will brighten up their day :)" ,
+          $scope.card.message = "Hey there "+ $routeParams.sendEmail.split('@')[0] +",\n\nIt looks like you just sent yourself a fuzzy ... Try sending one to someone else!!! \n\n It just takes a second and will brighten up their day :)";
           $scope.card.senderEmail = $routeParams.sendEmail;
         } else {
-        $scope.card.message = "Hey there "+ $routeParams.sendEmail.split('@')[0] + ",\n\n" + $routeParams.senderEmail.split('@')[0] + " just sent you a Fuzzy! ... Cool right?!?! \n\nSend a Fuzzy back by changing this text and hitting the Send Fuzzy button!",
-        $scope.card.email = $routeParams.senderEmail;
-        $scope.card.senderEmail = $routeParams.sendEmail;
+          $scope.card.message = "Hey there "+ $routeParams.sendEmail.split('@')[0] + ",\n\n" + $routeParams.senderEmail.split('@')[0] + " just sent you a Fuzzy! ... Cool right?!?! \n\nSend a Fuzzy back by changing this text and hitting the Send Fuzzy button!";
+          if ($routeParams.senderEmail.split('@')[1] === 'fuzzytexts.io') {
+            // we have a phone number sender
+            console.log("we got to 29")
+            $scope.card.email = $routeParams.senderEmail.split('@')[0];
+            $scope.card.senderEmail = $routeParams.sendEmail;
+          } else {
+             console.log("we got to 33")
+            $scope.card.email = $routeParams.senderEmail;
+            $scope.card.senderEmail = $routeParams.sendEmail;
+          }
       }
       } else {
         // we only have a sender email
-        $scope.card.message = "Hey there "+ $routeParams.sendEmail.split('@')[0] +",\n\nIt looks like you just got a Fuzzy! Try sending one to someone else!!! \n\n It just takes a second and will brighten up their day :)" ,
+        $scope.card.message = "Hey there "+ $routeParams.sendEmail.split('@')[0] +",\n\nIt looks like you just got a Fuzzy! Try sending one to someone else!!! \n\n It just takes a second and will brighten up their day :)";
         $scope.card.senderEmail = $routeParams.sendEmail;
       }
     } 
@@ -77,13 +85,18 @@ angular.module('fuzziesApp')
    
    $scope.sendFuzzy = function() {
       
-      if (!validateEmail($scope.card.senderEmail)) {
-        alert("Whoops :( your email was not valid. Please enter a valid email in the top input box!");
+      if (!validateEmail($scope.card.senderEmail) && $scope.card.senderEmail.replace(/[^\d]/g,'').length !== 10) {
+        alert("Whoops :( your or cell number email was not valid. Please enter a valid email in the top input box!");     
       } else {
+        if ($scope.card.senderEmail.split('@').length === 1) {
+          var cellEmail = $scope.card.senderEmail + '@fuzzytexts.io';
+        }
+        console.log($scope.card.senderEmail); 
         var emailsArray = [];
         var textsArray = [];
         var invalidsArray = [];
         var sendToArray = $scope.card.email.split(',');
+
         if (sendToArray.length > 0) {
           sendToArray.forEach(function(sendTo){
             var sendTo = sendTo.trim();
@@ -106,7 +119,16 @@ angular.module('fuzziesApp')
              //////// there are no invalids
              if ( emailsArray.length > 0) {
                $scope.card.emails = emailsArray.join(", ");
-               var card = $scope.card;   
+               var card = {
+                message: $scope.card.message,
+                senderEmail: $scope.card.senderEmail,
+                email: $scope.card.email, 
+                backgroundColor: $scope.card.backgroundColor,
+                fontSize: $scope.card.fontSize
+               }   
+               if (cellEmail) {
+                card.senderEmail = cellEmail; 
+               }
                $scope.showSpinner = true;
                sendemail.send(card).success(function(responceData) {
                    console.log(responceData);
@@ -120,8 +142,17 @@ angular.module('fuzziesApp')
                }
 
              if (textsArray.length > 0) {
-              $scope.card.numbers = textsArray;
-              var card = $scope.card;
+               var card = {
+                message: $scope.card.message,
+                senderEmail: $scope.card.senderEmail,
+                email: $scope.card.email, 
+                backgroundColor: $scope.card.backgroundColor,
+                fontSize: $scope.card.fontSize,
+                numbers: textsArray
+               }   
+               if (cellEmail) {
+                card.senderEmail = cellEmail; 
+               }
               sendemail.sendTexts(card).success(function(responceData){
                  console.log(responceData);
                  $scope.showSpinner = false;
