@@ -11,6 +11,7 @@ angular.module('fuzziesApp')
       email: "", 
       backgroundColor: "",
       fontSize: "",
+      touched: false
     };
     
     if ($routeParams.senderEmail){
@@ -41,6 +42,14 @@ angular.module('fuzziesApp')
         $scope.card.senderEmail = $routeParams.sendEmail;
       }
     } 
+
+  $scope.removeDefault = function() {
+    console.log("hell0");
+    if ($scope.card.touched === false) {
+      $scope.card.touched = true;
+      $scope.card.message = "";
+    }
+  }  
     
   $scope.colors = [
    {color:"pink", active: true},
