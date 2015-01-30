@@ -2,6 +2,24 @@
 
 angular.module('fuzziesApp')
   .controller('CardCtrl', function ($scope, sendemail, $rootScope, $routeParams, $location, $anchorScroll, $http) {
+
+    $scope.backgroundGifs = [];
+    
+
+    $scope.getGifs = function() {
+      $http.get('/api/gifs').success(function(gifs){
+        gifs = gifs.gifs
+        console.log(gifs);
+        gifs.forEach(function(gif){
+          $scope.backgroundGifs.push({url: gif, active: false});
+        })
+        $scope.card.cardBackgroundImage = $scope.backgroundGifs[0].url;
+        console.log($scope.card.cardBackgroundImage);
+      }).error(function(err){
+        console.log(error)
+      })
+    };
+    $scope.getGifs();
     
     var self = this;
     $scope.showSpinner = false;
@@ -11,8 +29,45 @@ angular.module('fuzziesApp')
       email: "", 
       backgroundColor: "",
       fontSize: "",
-      touched: false
+      touched: false,
+      cardBackgroundImage: "",
+      fontColor: "",
     };
+
+    $scope.fontColors = [
+    {color: "white", active: true}, 
+    {color: "black", active: false}, 
+    {color: "pink", active: false}, 
+    {color: "red", active: false}, 
+    {color: "blue", active: false}, 
+    {color: "green", active: false}, 
+    ]
+
+    $scope.setActiveFontColor = function (fontColor) {
+      $scope.fontColors.forEach(function(fontColor){
+        fontColor.active = false;
+      })
+      fontColor.active = true;
+      $scope.card.fontColor = fontColor.color;
+    }
+
+    $scope.card.fontColor = $scope.fontColors[0].color
+
+    // $scope.backgroundGifs = [
+    // {url:"https://4.bp.blogspot.com/-fYJrkNWec08/T9EYOmNGPNI/AAAAAAAAC04/UtdRRM8a3hc/s640/cat-fat-dancing-cat-gif.gif" , active: true},
+    // {url:"https://lh6.googleusercontent.com/-78R9J4scXL4/VAW9S0lZfWI/AAAAAAAABns/YX_EA72-jF4/w500-h380/to%2Bdarn%2Bcute%2521.gif", active: false},
+    // {url:"https://media.giphy.com/media/gWl3BxSPsndle/giphy.gif" , active: false}
+    // ];
+
+    // $scope.card.cardBackgroundImage = $scope.backgroundGifs[0].url;
+
+    $scope.setActiveGif = function (gif) {
+      $scope.card.cardBackgroundImage = gif.url;
+      $scope.backgroundGifs.forEach(function(gif) {
+        gif.active = false;
+      })
+      gif.active = true;
+    }
     
     if ($routeParams.senderEmail){
       // we have params
@@ -133,7 +188,8 @@ angular.module('fuzziesApp')
                 senderEmail: $scope.card.senderEmail,
                 email: $scope.card.email, 
                 backgroundColor: $scope.card.backgroundColor,
-                fontSize: $scope.card.fontSize
+                fontSize: $scope.card.fontSize, 
+                cardBackgroundImage: $scope.card.cardBackgroundImage
                }   
                if (cellEmail) {
                 card.senderEmail = cellEmail; 

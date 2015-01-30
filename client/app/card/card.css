@@ -18,7 +18,8 @@
 	padding-left: 0.5em;
 	padding-right: 0.5em;
 	padding-top: 1em;
-	/*background: url("http://4.bp.blogspot.com/-fYJrkNWec08/T9EYOmNGPNI/AAAAAAAAC04/UtdRRM8a3hc/s640/cat-fat-dancing-cat-gif.gif");*/
+	font-weight: bold;
+	color:white;
 }
 
 #card-text-area::-webkit-scrollbar {
@@ -68,17 +69,18 @@
 
 }
 
-.font-size-editor-container {
+.font-color-editor-container {
 	width: 2em;
-	height: auto;
+	height: 5.5em;
 	-webkit-transform: translate(0em, -0.5em);
 	box-shadow: 5px 5px 5px #888888;
 	background-color: whitesmoke;
 	overflow: auto;
 	padding-bottom: 0.5em;
+	overflow: auto
 }
 
-.font-size-editor-container::-webkit-scrollbar {
+.font-color-editor-container::-webkit-scrollbar {
     width: 0px;
 }
 
