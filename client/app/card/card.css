@@ -1,11 +1,17 @@
-.card-and-edit-contianer {
+/*.card-and-edit-contianer {
 	display: block;
 	width: 30em;
-	min-height: 300px;
 	margin: 0 auto;
 	overflow: visible;
-	-webkit-transform: translate(-50px, 70px);
-	margin-bottom: 5em;  /*this moves the whole page down*/
+	-webkit-transform: translate(-50px, 0px);
+	margin-top: 0px;
+	margin-bottom: -50px;
+}
+*/
+#card-text-area-wrapper {
+	-webkit-transform: translate(0px, -90px);
+	width: 30em;
+	margin-bottom: -6em;
 }
 
 #card-text-area {
@@ -20,6 +26,7 @@
 	padding-top: 1em;
 	font-weight: bold;
 	color:white;
+	width: 30em;
 }
 
 #card-text-area::-webkit-scrollbar {
@@ -27,7 +34,7 @@
 }
 
 #card-text-area-pre {
-	-webkit-transform: translate(0em, 0em);
+	-webkit-transform: translate(0em, 0px);
 	background-color: red;
 	border: 1px solid black;
 	font-size: 2em;
@@ -38,7 +45,8 @@
 	padding-right: 0.5em;
 	padding-bottom: 1.5em;
 	margin-top: -325px;
-	min-height: 374px;
+	min-height: 416px;
+	width: 30em;
 }
 
 .spinner {
@@ -58,10 +66,10 @@
 
 .background-editor-container {
 	outline: none;
-	height: 15em;
-	width: 2em;
+	height: 22em;
+	width: 3em;
 	display: inline-block;
-	-webkit-transform: translate(0em, 0em);
+	-webkit-transform: translate(22em, 5px);
 	box-shadow: 5px 5px 5px #888888;
 	background-color: whitesmoke;
 	padding-bottom: 0.5em;
@@ -70,9 +78,9 @@
 }
 
 .font-color-editor-container {
-	width: 2em;
-	height: 5.5em;
-	-webkit-transform: translate(0em, -0.5em);
+	width: 3em;
+	height: 7.7em;
+	-webkit-transform: translate(22em, 0px);
 	box-shadow: 5px 5px 5px #888888;
 	background-color: whitesmoke;
 	overflow: auto;
@@ -98,7 +106,7 @@
 }
 
 .font-pick-button {
-	height: 19px;
+	height: 30px;
 	line-height: 19px;
 	width: 80%;
 	margin: 0 auto;

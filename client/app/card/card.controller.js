@@ -1,30 +1,14 @@
 'use strict';
 
 angular.module('fuzziesApp')
-  .controller('CardCtrl', function ($scope, sendemail, $rootScope, $routeParams, $location, $anchorScroll, $http) {
-
+  .controller('CardCtrl', function ($scope, sendemail, $rootScope, $routeParams, $location, $anchorScroll, $http, $timeout) {
     $scope.backgroundGifs = [];
-    
 
-    $scope.getGifs = function() {
-      $http.get('/api/gifs').success(function(gifs){
-        gifs = gifs.gifs
-        console.log(gifs);
-        gifs.forEach(function(gif){
-          $scope.backgroundGifs.push({url: gif, active: false});
-        })
-        $scope.card.cardBackgroundImage = $scope.backgroundGifs[0].url;
-        console.log($scope.card.cardBackgroundImage);
-      }).error(function(err){
-        console.log(error)
-      })
-    };
-    $scope.getGifs();
-    
     var self = this;
     $scope.showSpinner = false;
     $scope.card = {
-    	message: "Hey There!\n\nWelcome to Fuzzies! Send one to someone special ... It's sure to brighten up their day :) \n\n Love,\n\nDr. FuzzyMcMailer",
+    	// message: "Hey There!\n\nWelcome to Fuzzies! Send one to someone special ... It's sure to brighten up their day :) \n\n Love,\n\nDr. FuzzyMcMailer",
+      message: "",
     	senderEmail: "",
       email: "", 
       backgroundColor: "",
@@ -33,10 +17,63 @@ angular.module('fuzziesApp')
       cardBackgroundImage: "",
       fontColor: "",
     };
+    $scope.typeMessage = function() {
+        simulateTyping("Hi cool person!\n\n Welcome to GIFter :) \nSearch for a GIF you like and then customize it by changing this\ntext.\n\n Afterwards you can share it out to the internets ... Cool right??");
+        function simulateTyping(str) {
+        var currentCharIndex = 0;
+        function typeChar(){
+          if (currentCharIndex >= str.length)
+            return;
+          var char = str[currentCharIndex];
+          $scope.card.message += char;
+          currentCharIndex ++;
+          $scope.$apply();
+          setTimeout(typeChar, 80);
+        } 
+        
+        typeChar();
+        
+      }
+    }
+
+
+
+
+
+      // console.log("hello");
+      // var message = "Hey There!\n\nWelcome to Fuzzies! Send one to someone special ... It's sure to brighten up their day :) \n\n Love,\n\nDr. FuzzyMcMailer";
+      // var messageArray = message.split('');
+      // console.log(messageArray);
+      // messageArray.forEach(function(letter){
+      //   console.log("hello");
+      //   $timeout(function() {
+      //     $scope.card.message += letter;
+      //     $scope.$apply();
+      //   }, 2000);
+      // });
+    
+    $scope.typeMessage();
+    var firstSearch = false;
+    $scope.$on('gotGifs', function(event, gifs){
+        gifs = gifs.gifs
+        if (!firstSearch) {
+          $scope.backgroundGifs = [{url:'http://media.giphy.com/media/tuvMgAPzxaQBq/giphy.gif', active:false}];
+          firstSearch = true;
+        } else {
+          $scope.backgroundGifs = [];
+        }
+        gifs.forEach(function(gif){
+          $scope.backgroundGifs.push({url: gif, active: false});
+        })
+        $scope.backgroundGifs[0].active = true;
+        $scope.card.cardBackgroundImage = $scope.backgroundGifs[0].url;
+        console.log($scope.card.cardBackgroundImage);
+
+    })
 
     $scope.fontColors = [
-    {color: "white", active: true}, 
     {color: "black", active: false}, 
+    {color: "white", active: true}, 
     {color: "pink", active: false}, 
     {color: "red", active: false}, 
     {color: "blue", active: false}, 

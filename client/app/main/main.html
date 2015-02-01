@@ -1,19 +1,20 @@
 <div class="container">
 	<ng-include src="'components/header/header.html'"></ng-include>
-		<div ng-controller="CardCtrl">
-			<div class="row">
-				<div class="col-md-12">   
-					<div class="card-form-container">
+		<div style="height:3em;"></div>
+		<gifsearch></gifsearch>
+		<div id="card-controller" ng-controller="CardCtrl">
+			<!-- <div class="row">
+				<div class="col-md-12">    -->
+					<!-- <div class="card-form-container"> -->
 						<card></card>
-					</div>
-			</div>   
-			</div>
-			<div style="height:3em;"></div>
-		<div class="row">
-	  		<div class="col-md-12">   
+					<!-- </div> -->
+				<!-- </div>   
+			</div> -->
+		<!-- <div class="row">
+	  		<div class="col-md-12">    -->
 	          <sendform></sendform>
-	      </div>    
-	  </div>
+	    <!--   </div>    
+	  </div> -->
 	</div>
 	<div style="height:3em;"></div>
 	<ng-include src="'components/howitworks/howitworks.html'"></ng-include>
